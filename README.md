@@ -1,6 +1,23 @@
 # prometheus immich-stats-exporter
 
-Export immich statistics to prometheus with [json_exporter](https://github.com/prometheus-community/json_exporter).
+Export immich statistics to prometheus with [json_exporter](https://github.com/prometheus-community/json_exporter). No custom code required, just configuration.
+
+## Metrics
+
+The exporter collects the following metrics:
+
+| Metric Name | Type | Labels | Description |
+|---|---|---|---|
+| `immich_server_photos` | gauge | | Total number of photos on the server |
+| `immich_server_videos` | gauge | | Total number of videos on the server |
+| `immich_server_usage_bytes` | gauge | | Total storage usage in bytes |
+| `immich_server_usage_photos_bytes` | gauge | | Storage used by photos in bytes |
+| `immich_server_usage_videos_bytes` | gauge | | Storage used by videos in bytes |
+| `immich_user_photos` | gauge | `user_id`, `user_name` | Number of photos per user |
+| `immich_user_videos` | gauge | `user_id`, `user_name` | Number of videos per user |
+| `immich_user_usage_bytes` | gauge | `user_id`, `user_name` | Storage usage per user in bytes |
+| `immich_user_usage_photos_bytes` | gauge | `user_id`, `user_name` | Storage used by photos per user in bytes |
+| `immich_user_usage_videos_bytes` | gauge | `user_id`, `user_name` | Storage used by videos per user in bytes |
 
 ### Usage
 
