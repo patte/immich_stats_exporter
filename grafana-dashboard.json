@@ -22,7 +22,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -39,7 +40,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "locale"
         },
         "overrides": []
       },
@@ -57,7 +58,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -72,7 +75,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus"
+            "type": "prometheus",
+            "uid": "effenza0c92bkb"
           },
           "editorMode": "code",
           "expr": "immich_server_photos",
@@ -80,12 +84,13 @@
           "refId": "A"
         }
       ],
-      "title": "Server Photos",
+      "title": "Photos",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -102,7 +107,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "locale"
         },
         "overrides": []
       },
@@ -120,7 +125,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -138,12 +145,13 @@
           "refId": "A"
         }
       ],
-      "title": "Server Videos",
+      "title": "Videos",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -178,7 +186,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -192,16 +202,19 @@
       "pluginVersion": "12.4.1",
       "targets": [
         {
+          "editorMode": "code",
           "expr": "immich_server_usage_photos_bytes + immich_server_usage_videos_bytes",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Server Media Bytes",
+      "title": "Storage Usage",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -236,7 +249,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -247,18 +262,26 @@
       "pluginVersion": "12.4.1",
       "targets": [
         {
-          "expr": "delta(immich_server_photos[1d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_photos[1h])\n-\nlast_over_time(immich_server_photos[1h] offset 1d)",
+          "instant": true,
           "legendFormat": "Daily",
+          "range": false,
           "refId": "A"
         },
         {
-          "expr": "delta(immich_server_photos[7d])",
+          "editorMode": "code",
+          "expr": "last_over_time(immich_server_photos[1h])\n-\nlast_over_time(immich_server_photos[1h] offset 7d)",
           "legendFormat": "Weekly",
+          "range": true,
           "refId": "B"
         },
         {
-          "expr": "delta(immich_server_photos[30d])",
+          "editorMode": "code",
+          "expr": "last_over_time(immich_server_photos[1h])\n-\nlast_over_time(immich_server_photos[1h] offset 30d)",
           "legendFormat": "Monthly",
+          "range": true,
           "refId": "C"
         }
       ],
@@ -267,7 +290,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -302,7 +326,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -313,18 +339,30 @@
       "pluginVersion": "12.4.1",
       "targets": [
         {
-          "expr": "delta(immich_server_videos[1d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_videos[1h])\n-\nlast_over_time(immich_server_videos[1h] offset 1d)",
+          "instant": true,
           "legendFormat": "Daily",
+          "range": false,
           "refId": "A"
         },
         {
-          "expr": "delta(immich_server_videos[7d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_videos[1h])\n-\nlast_over_time(immich_server_videos[1h] offset 7d)",
+          "instant": true,
           "legendFormat": "Weekly",
+          "range": false,
           "refId": "B"
         },
         {
-          "expr": "delta(immich_server_videos[30d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_videos[1h])\n-\nlast_over_time(immich_server_videos[1h] offset 30d)",
+          "instant": true,
           "legendFormat": "Monthly",
+          "range": false,
           "refId": "C"
         }
       ],
@@ -333,7 +371,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -368,7 +407,9 @@
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -379,27 +420,40 @@
       "pluginVersion": "12.4.1",
       "targets": [
         {
-          "expr": "delta(immich_server_usage_bytes[1d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_usage_bytes[1h])\n-\nlast_over_time(immich_server_usage_bytes[1h] offset 1d)",
+          "instant": true,
           "legendFormat": "Daily",
+          "range": false,
           "refId": "A"
         },
         {
-          "expr": "delta(immich_server_usage_bytes[7d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_usage_bytes[1h])\n-\nlast_over_time(immich_server_usage_bytes[1h] offset 7d)",
+          "instant": true,
           "legendFormat": "Weekly",
+          "range": false,
           "refId": "B"
         },
         {
-          "expr": "delta(immich_server_usage_bytes[30d])",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "last_over_time(immich_server_usage_bytes[1h])\n-\nlast_over_time(immich_server_usage_bytes[1h] offset 30)",
+          "instant": true,
           "legendFormat": "Monthly",
+          "range": false,
           "refId": "C"
         }
       ],
-      "title": "Usage Growth",
+      "title": "Storage Growth",
       "type": "stat"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -455,9 +509,22 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "locale"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 8,
@@ -492,12 +559,13 @@
           "refId": "B"
         }
       ],
-      "title": "Photos and Videos Over Time",
+      "title": "Photos and Videos",
       "type": "timeseries"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -606,12 +674,13 @@
           "refId": "C"
         }
       ],
-      "title": "Server Usage Over Time",
+      "title": "Storage",
       "type": "timeseries"
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -638,16 +707,22 @@
       },
       "id": 31,
       "options": {
-        "displayLabels": ["name"],
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true,
-          "values": ["percent"]
+          "values": [
+            "percent"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -671,7 +746,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -698,16 +774,22 @@
       },
       "id": 32,
       "options": {
-        "displayLabels": ["name"],
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true,
-          "values": ["percent"]
+          "values": [
+            "percent"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -731,7 +813,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "effenza0c92bkb"
       },
       "fieldConfig": {
         "defaults": {
@@ -758,16 +841,22 @@
       },
       "id": 30,
       "options": {
-        "displayLabels": ["name"],
+        "displayLabels": [
+          "name"
+        ],
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true,
-          "values": ["percent"]
+          "values": [
+            "percent"
+          ]
         },
         "pieType": "pie",
         "reduceOptions": {
-          "calcs": ["lastNotNull"],
+          "calcs": [
+            "lastNotNull"
+          ],
           "fields": "",
           "values": false
         },
@@ -786,25 +875,28 @@
           "refId": "A"
         }
       ],
-      "title": "Disk Usage by User",
+      "title": "Storage Usage by User",
       "type": "piechart"
     }
   ],
   "preload": false,
   "refresh": "5m",
   "schemaVersion": 42,
-  "tags": ["immich", "prometheus"],
+  "tags": [
+    "immich",
+    "prometheus"
+  ],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-30d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Immich",
   "uid": "immich-statistics",
-  "version": 18,
+  "version": 26,
   "weekStart": ""
 }
